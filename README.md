@@ -102,27 +102,197 @@ _Signed and Unsigned Integer representation_
 
 ## DAY-2 - Introduction to ABI and Basic Verification Flow
 
+<details>
+ <summary>
+    RV-D2SK1 - Application Binary Interface
+ </summary>
+
+## RV-D2SK1 - L1 - Introducation to Application Binary Interface
+
+## RV-D2SK1 - L2 - Memory Allocation for Double Words
+
+## RV-D2SK1 - L3 - Load, Add ,Store Instructions with examples
+
+## RV-D2SK1 - L4 - Concluding 32 Registers and their respective ABI names
+
+</details>
+
+
+<details>
+ <summary>
+    RV-D2SK2 - Labworks using ABI function calls
+ </summary>
+
+
+## RV-D2SK2 - L1 - Study New Algorithm for SUM 1 to N using ASM
+## RV-D2SK2 - L2 - Review ASM function Calls
+## RV-D2SK2 - L3 - Simulate New C program wirh function Call 
+
+</details>
+
+<details>
+ <summary>
+    RV-D2SK3 - Basic Verification Flow using iVerilog
+ </summary>
+
+## RV-D2SK3 - L1 - Lab to run C prog on RISCV CPU
+
+</details>
+
+
+## DAY-3 - Digital Logic with TL - Verilog and Makerchip
+
+<details>
+  <summary>
+    RV-D3SK1 - Combinational Logic in TL-Verilog in Makerchip 
+  </summary>
+
+ ## RV-D3SK1 - L1 - Introduction to Logic Gates
+ ## RV-D3SK1 - L2 - Basic MUX Implementation and Introdiction to Makerchip
+ ## RV-D3SK1 - L3 - Labs for Combinational Logic
+
+ </details>
+
+ 
+<details>
+  <summary>
+    RV-D3SK2 - Sequential Logic 
+  </summary>
+
+## RV-D3SK2 - L1 - Introduction to Sequential Logic and Counter Lab
+## RV-D3SK2 - L2 - Sequential Calculator Lab
+
+
+</details>
+
+
+<details>
+  <summary>
+    RV-D3SK3 - Pipelined Logic 
+  </summary>
+
+## RV-D3SK3 - L1 - Pipelined Logic and Retiming
+## RV-D3SK3 - L2 - Pipeline Logic Advantages and Demo on Platform
+## RV-D3SK3 - L3 - Lab on Error Condtions within Computation Pipeline
+## RV-D3SK3 - L4 - Lab on 2 Cycle Calculator
+
+</details>
+
+
+<details>
+  <summary>
+    RV-D3SK4 - Validity 
+  </summary>
+
+  
+ ## RV-D3SK4 - L1 - Introduction to VALIDITY and its Advantages
+ ## RV-D3SK4 - L2 - Lab on validity and valid when condition
+ ## RV-D3SK4 - L3 - Lab to complete total distance
+ ## RV-D3SK4 - L4 - Lab on 2 cycle calculator with validity 
+ ## RV-D3SK4 - L5 - Calculator single Value Memory Lab
+
+ </details>
+
+<details>
+  <summary>
+    RV-D3SK5 - Wrap Up
+  </summary>
+ 
+## RV-D3SK5 - Introduction to Hierarchy Concept 
+
+
+</details>
+
+
+## DAY-3 - Basic RISCV CPU Computer Microarchitecture
+
+<details>
+  <summary>
+    RV-D4SK1 - Introduction to Simple RISCV Microarchitecture
+  </summary>
+
+## RV-D4SK1 - L1 - Microarchitecture of Single Cycle RISCV CPU
+## RV-D4SK2 - L2 - Starting Point Code for RISCV Labs - 1
+## RV-D4SK2 - L3 - Starting Point Code for RISCV Labs - 2
+
+</details>
+
+
+<details>
+  <summary>
+    RV-D4SK2 - Fetch and Decode
+  </summary>
+
+##  RV-D4SK2 - L1 - Implementation Plan and Lab for PC
+##  RV-D4SK2 - L2 - Lab for instruction fetch logic
+##  RV-D4SK2 - L3 - Lab for RV instruction types IRSBJU Decode Logic
+##  RV-D4SK2 - L4 - Lab for instruction immediate decode logic for RV ISBUJ
+##  RV-D4SK2 - L5 - Lab to decode other fields of Instruction of RV ISBUJ
+##  RV-D4SK2 - L6 - Lab to decode instruction fields based on Instruction type RV ISBUJ
+##  RV-D4SK2 - L7 - Lab to decode individual Instruction
+
+
+  
+</details>
+
+
+<details>
+  <summary>
+    RV-D4SK3 - RISCV Control Logic 
+  </summary>
+
+ 
+## RV-D4SK3 - L1 - Lab for Register file read -1 
+## RV-D4SK3 - L2 - Lab for Register file read -2
+## RV-D4SK3 - L3 - Lab for ALU operations
+## RV-D4SK3 - L4 - Lab for Register file write 
+## RV-D4SK3 - L5 - Concept of array and Rgister file details
+## RV-D4SK3 - L6 - Lab for implementing branch Instructions
+## RV-D4SK3 - L7 - Lab fpr completing branch instructions implementations
+## RV-D4SK3 - L8 - Lab to create simple testbench
+
+</details>
+
+
+## DAY-5 Complete Pipelined RISCV CPU Microarchitecture
 
 
 
+<details>
+  <summary>
+    RV-D5SK1 - Pipelining the CPU  
+  </summary>
+
+  ## RV-D5SK1 - L1 - Introduction to control flow hazard and read after write hazard
+  ## RV-D5SK1 - L2 - Create 3 cycle valid signal
+  ## RV-D5SK1 - L3 - Code 3 cycle RISCV architecture to take care of invalid signal
+  ## RV-D5SK1 - L4 - To modify 3 cycle RISCV to distribute logic 
+
+</details>
 
 
+<details>
+  <summary>
+    RV-D5SK2 - Solution to Pipeline Hazard
+  </summary>
 
 
+## RV-D5SK2 - L1 - Register File Bypass to address RD after WR hazard
+## RV-D5SK2 - L2 - Braches to correct branch target path
+## RV-D5SK2 - L3 - Complete instuction decode 
+## RV-D5SK2 - L4 - Code complete ALU
+</details>
 
+<details>
+  <summary>
+    RV-D5SK3 - Load Store Instruction and completing RISCV CPU
+  </summary>
 
-
-
-
-
-
-
-
-
-
-
-
-
+## RV-D5SK3 - L1 - Introduction and Lab to redirect load
+## RV-D5SK3 - L2 - Load data from Memory to Rgister file
+## RV-D5SK3 - L3 - Add loads and stores to test program
+## RV-D5SK3 - L4 - Add control logic for JUMP instructions
+## RV-D5SK3 - L5 - Wrap up 
 
 
 

@@ -75,11 +75,51 @@ _Signed and Unsigned Integer representation_
 
 ## RV-D1SK2 - L1 - C Program to compute sum from 1 to N. 
 
+Open a file named sum_1_to_n. using leafpad editor.
+```
+  $leafpad sum_1_to_n.c
 
+```
+
+Write your C code for sum of numbers from 1 to n (say n =9).
+Compile using GNU compiler.
+ ```
+ $gcc sum_1_to_n.c
+
+```
+
+Run the compiled object file (Default object file formed with the name a.out). 
+
+```
+  $./a/out
+
+```
 
 ## RV-D1SK2 - L2 - C - GCC Compile and Disassemble.
 
+The same C program is now compiled using RISC-V toolchain. Spike simulator is used to run the object file , and also as a debugger.
+
+
+
 ## RV-D1SK2 - L3 - Spike Simulation and Debug.
+
+Since we have previously created our sum_1_to_n.c program file, now to run the same program using RISC-V simulator:
+
+```
+$riscv64-unknown-elf-gcc -O1 -mabi=lp64 -march=rv64i -o sum_1_to_n.o sum_1_to_n.c
+
+```
+Command info: riscv64-unknown-elf-gcc => RISC-V compiler , -Ofast => Compiler option (Various compiler options like -O1, -o1, -Ofast) , -mabi=lp64 => ABI of long int pointer , -march=rv64i => architecture-64bit , -o => output , sum_1_to_n.o => object file , sum_1_to_n.c => C program file
+
+In order to see what is the assembly code for the C program that is run ,i.e to see the disassembled file, run the following in a new tab in the terminal:
+```
+$riscv64-unknown-elf-objdump -d sum_1_to_n.o | less
+
+```
+
+
+
+
 
 </details>
 

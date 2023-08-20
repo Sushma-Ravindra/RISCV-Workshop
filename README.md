@@ -1,9 +1,10 @@
 # RISCV-Workshop
 # Table of Contents
   - [DAY-1 - Introduction to RISC V ISA and GNU compiler toolchain](#day-1---introduction-to-risc-v-isa-and-gnu-compiler-toolchain)
-
-
-
+  - [DAY-2 - Introduction to ABI and Basic Verification Flow](#day-2---introduction-to-abi-and-basic-verification-flow)
+  - [DAY-3 - Digital Logic with TL - Verilog and Makerchip](#day-3---digital-logic-with-tl---verilog-and-makerchip)
+  - [DAY-4 - Basic RISCV CPU Computer Microarchitecture](#day-4---basic-riscv-cpu-computer-microarchitecture)
+  - [DAY-5 Complete Pipelined RISCV CPU Microarchitecture](#day-5-complete-pipelined-riscv-cpu-microarchitecture)
 
 
   - [Contributors](#contributors)
@@ -204,7 +205,7 @@ _Signed and Unsigned Integer representation_
 </details>
 
 
-## DAY-3 - Basic RISCV CPU Computer Microarchitecture
+## DAY-4 - Basic RISCV CPU Computer Microarchitecture
 
 <details>
   <summary>

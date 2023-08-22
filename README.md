@@ -97,12 +97,6 @@ Run the compiled object file (Default object file formed with the name a.out).
 
 ## RV-D1SK2 - L2 - C - GCC Compile and Disassemble.
 
-The same C program is now compiled using RISC-V toolchain. Spike simulator is used to run the object file , and also as a debugger.
-
-
-
-## RV-D1SK2 - L3 - Spike Simulation and Debug.
-
 Since we have previously created our sum_1_to_n.c program file, now to run the same program using RISC-V simulator:
 
 ```
@@ -117,6 +111,60 @@ $riscv64-unknown-elf-objdump -d sum_1_to_n.o | less
 
 ```
 
+The same C program is now compiled using RISC-V toolchain. Spike simulator is used to run the object file , and also as a debugger.
+```
+  $ riscv64-unknown-elf-gcc -O1 -mabi=lp64 -march=rv64i -o sum1ton.o sum1ton.c
+  $ riscv64-unknown-elf-objdump -d sum1ton.o | less
+  # different command 
+  $ riscv64-unknown-elf-gcc -Ofast -mabi=lp64 -march=rv64i -o sum1ton.o sum1ton.c
+  $ riscv64-unknown-elf-objdump -d sum1ton.o | less
+  $ spike pk sum1ton.o
+```
+![Screenshot from 2023-08-22 22-13-45](https://github.com/Sushma-Ravindra/RISCV-Workshop/assets/141133883/ce0fb07c-2f8d-4d52-aabb-66b9443aadda)
+![Screenshot from 2023-08-22 22-18-50](https://github.com/Sushma-Ravindra/RISCV-Workshop/assets/141133883/bbdd8ce7-5785-46c7-aa7d-2d11b618bd29)
+![Screenshot from 2023-08-22 22-21-24](https://github.com/Sushma-Ravindra/RISCV-Workshop/assets/141133883/4d0c659d-9e10-4303-af5b-94e5db98c176)
+![Screenshot from 2023-08-22 22-25-45](https://github.com/Sushma-Ravindra/RISCV-Workshop/assets/141133883/96a29653-e7d3-4184-9f63-f714ac15c216)
+
+
+
+## RV-D1SK2 - L3 - Spike Simulation and Debug.
+
+
+Some data representation terms we use:
+Byte - A byte is a fundamental unit of digital information that consists of a group of eight bits.
+Word - A word is a basic unit of data that a processor can operate on in a single instruction. It typically corresponds to the natural data width of the processor's architecture. In RISC-V Word is of length 32bits.
+Double Word - In computer architecture and data representation, a "double word" is a term used to describe a unit of data that is twice the size of a "word." In RISC-V Double word is of length 64bits.
+Most Significant bit(MSB) - MSB stands for "Most Significant Bit." It is a term used in digital systems and binary representation to refer to the bit in a binary number that holds the highest positional value.
+Least Significant bit(LSB) - LSB stands for "Least Significant Bit." It is the term used in binary representation to refer to the bit in a binary number that holds the lowest positional value. In other words, the Least Significant Bit is the rightmost bit in a binary representation.
+
+![Screenshot from 2023-08-22 22-54-56](https://github.com/Sushma-Ravindra/RISCV-Workshop/assets/141133883/b4b26952-5c68-4547-887a-b7f709ac2f89)
+
+The total unsigned numbers we can form using n-bits is given as : 2^(n) - 1.
+We use 2's complement representation to represent the negative numbers.
+For signed representation, the MSB bit indicated the sign of the number. If MSB=0, it is a positive number and MSB=1 indicates a negative number.
+
+
+
+    In signed representation of binary numbers, the range of positive numbers we can represent using n-bits is: 0 to (2^(n-1) - 1) and the range of negative numbers is: -1 to -2^(n-1).
+    
+![Screenshot from 2023-08-22 22-56-53](https://github.com/Sushma-Ravindra/RISCV-Workshop/assets/141133883/7b74a7a7-24c7-41e9-b417-04c1a426894e)
+
+
+    
+
+    Let us do a lab exercise based on the signed and unsigned binary numbers:
+
+    The following code is to rpresent the highest binary number in unsigned representation:
+
+```
+  #include <stdio.h>
+  #include <math.h>
+  int main() {
+  unsigned long long int max = (unsigned long long int) (pow(2,64) -1);
+  printf("highest number represented by unsigned long long int is %llu\n", max);
+  return 0;
+  }
+```
 
 
 

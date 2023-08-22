@@ -263,7 +263,7 @@ Output:
     RV-D2SK1 - Application Binary Interface
  </summary>
 
-## RV-D2SK1 - L1 - Introducation to Application Binary Interface
+
 
 Application Binary Interface - In the context of RISC-V, the ABI specifies how system calls are invoked and how data is passed between user-mode applications and the operating system. Specifically, the ABI defines which registers are used for passing parameters to system calls and for receiving return values. It also specifies how the system call number (which corresponds to the specific service being requested) is passed to the operating system.
 Register Width in RISC-V - The width of registers in the RISC-V architecture is determined by the value of XLEN, which represents the native word size of the processor. XLEN is defined at the time the RISC-V architecture is implemented and can be different for different variations of the architecture.
@@ -279,6 +279,8 @@ Load directly into the registers.
 Load into the memory and then to register.(Each memory cell hold 1byte for 64bits data to load into memory we need 8 such memory cells)
 
 Little-endian memory addressing system - RISC-V belongs to the little endian memory addressing system.In a little-endian system, the least significant byte (LSB) of a multi-byte value is stored at the lowest memory address, while the most significant byte (MSB) is stored at the highest memory address.
+
+
 
 Application Binary Interface:
 
@@ -303,32 +305,17 @@ All the instructions in RISC-V is of 32-bits.
 
 
 
+
 In the RISC-V instruction set architecture (ISA), instructions are categorized based on their formats and functionalities. The I-type, R-type, and S-type instructions are three common categories of instructions in RISC-V. These categories help describe the structure of the instruction and how they operate on data.
 
     I-Type Instructions (Immediate): I-type instructions are used for operations that involve an immediate value (constant) and a register. The immediate value is encoded within the instruction itself. Common examples include ADDI (add immediate), LW (load word), and SW (store word). Syntax: OP rd, rs1, imm
 
     R-Type Instructions (Register): R-type instructions are used for operations that involve registers. The operation is specified by the opcode, and both source registers and destination registers are used. Common examples include ADD (add), SUB (subtract), and AND (bitwise AND). Syntax: OP rd, rs1, rs2
 
-    S-Type Instructions (Store): S-type instructions are used for storing data from a register into memory. They involve two registers and an offset that determines the memory location. Common examples include SW (store word) and SH (store halfword). Syntax: OP rs2, imm(rs1) Registers As we can see in the above figure 5bits are needed to represent each register. So if we calculate total number of registers we can have it will be, 2^5=32. Different types of registers is shown below.
+    S-Type Instructions (Store): S-type instructions are used for storing data from a register into memory. They involve two registers and an offset that determines the memory location. Common examples include SW (store word) and SH (store halfword). Syntax: OP rs2, imm(rs1) Registers As we can see in the above figure 5bits are needed to represent each register. So if we calculate total number of registers we can have it will be, 2^5=32. Different types of registers is shown above.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-## RV-D2SK1 - L2 - Memory Allocation for Double Words
-
-## RV-D2SK1 - L3 - Load, Add ,Store Instructions with examples
-
-## RV-D2SK1 - L4 - Concluding 32 Registers and their respective ABI names
 
 </details>
 
@@ -339,9 +326,70 @@ In the RISC-V instruction set architecture (ISA), instructions are categorized b
  </summary>
 
 
-## RV-D2SK2 - L1 - Study New Algorithm for SUM 1 to N using ASM
-## RV-D2SK2 - L2 - Review ASM function Calls
-## RV-D2SK2 - L3 - Simulate New C program wirh function Call 
+
+
+
+
+
+
+
+
+
+
+
+
+Using ASM(Assembly language program) we are writing the code for sum of numbers from 1 to 9. We have main program in 1to9_custom.c file which does the function call and the function get calls in load.
+
+```
+#include<stdio.h>
+extern int load(int x,int y); //defined function over here
+
+int main{
+int result=0;
+int count=9;
+result = load(0x0, count+1);
+
+printf("sum of numbers from 1 to %d is %d\n", count,result);
+}
+
+
+//load.S
+.section .text	
+.global load
+.type load, @function
+
+load: 
+	add  a4, a0, 0
+	add  a2, a1, 0
+	add  a3, 0, 0
+loop:
+	add  a4, a4, a3
+	add  a3, a3, 1
+	blt  a3, a2, loop
+	add  a0, a4, 0
+	ret
+
+```
+
+Run the above codes using spike compiler and observe: 
+
+file:///home/lasya/Pictures/Screenshots/Screenshot%20from%202023-08-22%2018-22-15.png![image](https://github.com/Sushma-Ravindra/RISCV-Workshop/assets/141133883/8e1e94a6-17c5-4f74-b6ac-2ed544459105)
+
+
+View the assembly code:
+riscv64-unknown-elf-objdump -d sum1ton.o | less
+
+file:///home/lasya/Pictures/Screenshots/Screenshot%20from%202023-08-22%2018-24-47.png![image](https://github.com/Sushma-Ravindra/RISCV-Workshop/assets/141133883/da9f2a79-7044-42d2-9ef1-1bd55f3bdbd8)
+
+
+
+
+
+
+
+
+
+
 
 </details>
 
@@ -350,9 +398,65 @@ In the RISC-V instruction set architecture (ISA), instructions are categorized b
     RV-D2SK3 - Basic Verification Flow using iVerilog
  </summary>
 
-## RV-D2SK3 - L1 - Lab to run C prog on RISCV CPU
+We will follow the following procedure in this lab session:
+
+![image](https://github.com/Sushma-Ravindra/RISCV-Workshop/assets/141133883/2123e583-e183-4f67-ad77-96c1213c92a8)
+
+There is this rv32im.sh file which is the script file which contain scripts that are needed to convert into hex file which is firmware.hex and load it into picor32.v memory using testbench.v and simulate it at the end.
+
+```
+riscv64-unknown-elf-gcc -c -mabi=ilp32 -march=rv32im -o 1to9_custom.o 1to9_custom.c 
+riscv64-unknown-elf-gcc -c -mabi=ilp32 -march=rv32im -o load.o load.S
+
+riscv64-unknown-elf-gcc -c -mabi=ilp32 -march=rv32im -o syscalls.o syscalls.c
+riscv64-unknown-elf-gcc -mabi=ilp32 -march=rv32im -Wl,--gc-sections -o firmware.elf load.o 1to9_custom.o syscalls.o -T riscv.ld -lstdc++
+chmod -x firmware.elf
+riscv64-unknown-elf-gcc -mabi=ilp32 -march=rv32im -nostdlib -o start.elf start.S -T start.ld -lstdc++
+chmod -x start.elf
+riscv64-unknown-elf-objcopy -O verilog start.elf start.tmp
+riscv64-unknown-elf-objcopy -O verilog firmware.elf firmware.tmp
+ cat start.tmp firmware.tmp > firmware.hex
+python3 hex8tohex32.py firmware.hex > firmware32.hex
+rm -f start.tmp firmware.tmp
+iverilog -o testbench.vvp testbench.v picorv32.v
+chmod -x testbench.vvp
+vvp -N testbench.vvp
+```
+
+
+Use following commands to the riscv cpu program code:
+```
+	vim 1to9_custom.c
+	chmod 777 rv32im.sh // change the permissions if needed
+	./rv32im.sh 
+```
+file:///home/lasya/Pictures/Screenshots/Screenshot%20from%202023-08-22%2018-34-47.png![image](https://github.com/Sushma-Ravindra/RISCV-Workshop/assets/141133883/dc2542a4-3b85-4adc-b0a7-1837aa9704df)
+
+
+
+
+
+
+
+
+
+
+
 
 </details>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ## DAY-3 - Digital Logic with TL - Verilog and Makerchip

@@ -1,4 +1,4 @@
-# RISCV-Workshop
+![image](https://github.com/Sushma-Ravindra/RISCV-Workshop/assets/141133883/6e00d042-05e0-4464-ac2d-5ac51bea3e46)# RISCV-Workshop
 # Table of Contents
   - [DAY-1 - Introduction to RISC V ISA and GNU compiler toolchain](#day-1---introduction-to-risc-v-isa-and-gnu-compiler-toolchain)
   - [DAY-2 - Introduction to ABI and Basic Verification Flow](#day-2---introduction-to-abi-and-basic-verification-flow)
@@ -665,6 +665,124 @@ Cycle Calculator
   </summary>
 
 In Transaction-Level Verilog (TL-Verilog), which is an extension of the Verilog hardware description language (HDL), "validity" refers to the concept of indicating whether a piece of data is valid or not. TL-Verilog is designed to facilitate high-level modeling and rapid design entry, particularly for transaction-level modeling.
+A new scope, called “when” scope is introduced for this and it is denoted as ?$valid. This new scope has many advantages - easier design, cleaner debug, better error checking and automated clock gating. Validity provides :
+Easier debug
+Cleaner design
+Better error checking
+Automated Clock gating
+Clock Gating: Clock gating is a power-saving technique used in digital circuit design to reduce the dynamic power consumption of a circuit by controlling the clock signal to specific components or modules when they are not actively needed. TL-Verilog can produce fine-grained gating(Enable). It involves enabling or disabling the clock signal to certain portions of a circuit based on their operational requirements. This helps conserve power by reducing unnecessary clock switching and activity. In clock gating, the clock signal is used as a control signal to enable or disable the operation of certain elements within a design. When a component's clock is gated off (disabled), it effectively stops processing and consuming power, thereby reducing power consumption. When the component's clock is gated on (enabled), it resumes normal operation.
+
+Implementing the Pythagoran's theorem with validity:
+
+
+DISTANCE ACCUMULATOR:
+
+
+
+![image](https://github.com/Sushma-Ravindra/RISCV-Workshop/assets/141133883/378a529f-7838-4313-946e-b48097bfd0d7)
+
+```
+ $reset = *reset;
+
+ |calc
+ 	 @1
+     $reset = *reset;
+        
+  ?$vaild      
+     @1
+        $aa_seq[31:0] = $aa[3:0] * $aa;
+        $bb_seq[31:0] = $bb[3:0] * $bb;;
+  
+     @2
+        $cc_seq[31:0] = $aa_seq + $bb_seq;;
+  
+     @3
+        $cc[31:0] = sqrt($cc_seq);
+        
+  @4
+     $total_distance[63:0] = 
+        $reset ? '0 :
+        $valid ? >>1$total_distance + $cc :
+                 >>1$total_distance;
+```
+
+![image](https://github.com/Sushma-Ravindra/RISCV-Workshop/assets/141133883/c2c9a4c8-3aca-4dd1-8cf3-9d81f4f759eb)
+
+
+To implement Cycle calculator with Validity:
+
+![image](https://github.com/Sushma-Ravindra/RISCV-Workshop/assets/141133883/dc90864b-7cb7-42ae-89ed-d0d837613521)
+
+```
+|calc
+  @0
+     $reset = *reset;
+     
+  @1
+     $val1 [31:0] = >>2$out [31:0];
+     $val2 [31:0] = $rand2[3:0];
+     
+     $valid = $reset ? 1'b0 : >>1$valid + 1'b1 ;
+     $valid_or_reset = $valid || $reset;
+     
+  ?$vaild_or_reset
+     @1   
+        $sum [31:0] = $val1 + $val2;
+        $diff[31:0] = $val1 - $val2;
+        $prod[31:0] = $val1 * $val2;
+        $quot[31:0] = $val1 / $val2;
+        
+     @2   
+        $out [31:0] = $reset ? 32'b0 :
+                      ($op[1:0] == 2'b00) ? $sum :
+                      ($op[1:0] == 2'b01) ? $diff :
+                      ($op[1:0] == 2'b10) ? $prod :
+                                            $quot ;
+```
+
+![image](https://github.com/Sushma-Ravindra/RISCV-Workshop/assets/141133883/6e360025-1e4a-484d-9c39-910572a6b2ae)
+
+
+
+To implement Calculator with single value memory:
+
+![image](https://github.com/Sushma-Ravindra/RISCV-Workshop/assets/141133883/6599c788-5d07-4857-92e8-4b70b6d88fab)
+
+
+```
+|calc
+  @0
+     $reset = *reset;
+     
+  @1
+     $val1 [31:0] = >>2$out;
+     $val2 [31:0] = $rand2[3:0];
+     
+     $valid = $reset ? 1'b0 : >>1$valid + 1'b1 ;
+     $valid_or_reset = $valid || $reset;
+     
+  ?$vaild_or_reset
+     @1   
+        $sum [31:0] = $val1 + $val2;
+        $diff[31:0] = $val1 - $val2;
+        $prod[31:0] = $val1 * $val2;
+        $quot[31:0] = $val1 / $val2;
+        
+     @2   
+        $mem[31:0] = $reset ? 32'b0 :
+                     ($op[2:0] == 3'b101) ? $val1 : >>2$mem ;
+        
+        $out [31:0] = $reset ? 32'b0 :
+                      ($op[2:0] == 3'b000) ? $sum :
+                      ($op[2:0] == 3'b001) ? $diff :
+                      ($op[2:0] == 3'b010) ? $prod :
+                      ($op[2:0] == 3'b011) ? $quot :
+                      ($op[2:0] == 3'b100) ? >>2$mem : >>2$out ;
+```
+
+
+![image](https://github.com/Sushma-Ravindra/RISCV-Workshop/assets/141133883/8d4f12d2-3449-4d55-a544-27d551dc8315)
+
 
 
 
@@ -676,8 +794,45 @@ In Transaction-Level Verilog (TL-Verilog), which is an extension of the Verilog 
   <summary>
     RV-D3SK5 - Wrap Up
   </summary>
+THe concept of Hierarchy is explored in Makerchip with the help of examples.
+
+
+Conways Game of LIfe
+
+
+![image](https://github.com/Sushma-Ravindra/RISCV-Workshop/assets/141133883/553aba36-a7eb-4f7e-a4d3-975de6506aa6)
+
+Pythagoran's theorem:
+```
+|calc
+      
+      // DUT
+      /coord[1:0]
+         @1
+            $sq[9:0] = $value[3:0] ** 2;
+      @2
+         $cc_sq[10:0] = /coord[0]$sq + /coord[1]$sq;
+      @3
+         $cc[4:0] = sqrt($cc_sq);
+
+
+      // Print
+      @3
+         \SV_plus
+            always_ff @(posedge clk) begin
+               \$display("sqrt((\%2d ^ 2) + (\%2d ^ 2)) = %2d", /coord[0]$value, /coord[1]$value, $cc);
+            end
+
+
+```
+
+
+![image](https://github.com/Sushma-Ravindra/RISCV-Workshop/assets/141133883/5d01ae5f-c734-4543-a106-58b16a407908)
+
+
+
+
  
-## RV-D3SK5 - Introduction to Hierarchy Concept 
 
 
 </details>

@@ -169,27 +169,36 @@ Double Word - In computer architecture and data representation, a "double word" 
 Most Significant bit(MSB) - MSB stands for "Most Significant Bit." It is a term used in digital systems and binary representation to refer to the bit in a binary number that holds the highest positional value.
 Least Significant bit(LSB) - LSB stands for "Least Significant Bit." It is the term used in binary representation to refer to the bit in a binary number that holds the lowest positional value. In other words, the Least Significant Bit is the rightmost bit in a binary representation.
 
+![Screenshot from 2023-08-22 17-51-55](https://github.com/Sushma-Ravindra/RISCV-Workshop/assets/141133883/72e6e07e-3a3d-4052-8839-6c938b19d030)
+![Screenshot from 2023-08-22 17-51-42](https://github.com/Sushma-Ravindra/RISCV-Workshop/assets/141133883/1780a8be-b44e-4a67-8e14-a3a68584b854)
+
 
 ## RV-D1SK3 - L2 - 64 bit Number System for Signed Numbers
  
 
-    In signed representation of binary numbers, the range of positive numbers we can represent using n-bits is: 0 to (2^(n-1) - 1) and the range of negative numbers is: -1 to -2^(n-1).
+In signed representation of binary numbers, the range of positive numbers we can represent using n-bits is: 0 to (2^(n-1) - 1) and the range of negative numbers is: -1 to -2^(n-1).
 2's complement The two's complement is a mathematical technique used in computing to represent signed integers (positive and negative whole numbers) using the binary number system.
 
 To convert a negative integer to its two's complement representation:
+Take the positive binary representation.
+Flip all the bits (change 0s to 1s and 1s to 0s).
+Add 1 to the resulting value.
+Positive number MSB=0 Negative number MSB=1
 
-    Take the positive binary representation.
-    Flip all the bits (change 0s to 1s and 1s to 0s).
-    Add 1 to the resulting value.
-    Positive number MSB=0 Negative number MSB=1
+
+![Screenshot from 2023-08-22 22-56-53](https://github.com/Sushma-Ravindra/RISCV-Workshop/assets/141133883/11c2f83d-5193-4129-96b0-2b7327a4b912)
+
+
+![Screenshot from 2023-08-22 17-52-14](https://github.com/Sushma-Ravindra/RISCV-Workshop/assets/141133883/2b8f169d-2c77-4eb3-bfe0-6365cf560d88)
+
 
 
 ## RV-D1SK3 - L3 - Lab for Signed and Unsigned Numbers
 
 
-    Let us do a lab exercise based on the signed and unsigned binary numbers:
+Let us do a lab exercise based on the signed and unsigned binary numbers:
 
-    The following code is to rpresent the highest binary number in unsigned representation:
+ The following code is to rpresent the highest binary number in unsigned representation:
 
 ```
   #include <stdio.h>

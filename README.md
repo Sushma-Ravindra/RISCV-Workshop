@@ -467,8 +467,69 @@ file:///home/lasya/Pictures/Screenshots/Screenshot%20from%202023-08-22%2018-34-4
   </summary>
 
  ## RV-D3SK1 - L1 - Introduction to Logic Gates
- ## RV-D3SK1 - L2 - Basic MUX Implementation and Introdiction to Makerchip
+Introduction to Logic gates
+Logic gates are fundamental building blocks of digital circuits and are used to perform logical operations on binary data, which consists of 0s and 1s. These gates are the foundational components that allow computers and other digital devices to process and manipulate information.
+
+![image](https://github.com/Sushma-Ravindra/RISCV-Workshop/assets/141133883/5f10bdaa-6143-447c-8495-f6a5784c78de)
+
+
+TL-verilog which is Transactional - Level verilog is a higher-level abstraction of hardware description language (HDL) used for modeling and designing digital systems at a higher level of abstraction. It's often used to describe the behavior of a system without delving into the low-level implementation details. This level of abstraction is particularly useful for system-level design and simulation.
+In contrast to the traditional gate-level Verilog, which focuses on describing the circuit interconnections and physical gates, transactional-level Verilog allows designers to describe the operation of the system using more abstract constructs.
+
+Makerchip Makerchip is an online platform and integrated development environment (IDE) that allows users to design, simulate, and implement digital systems using hardware description languages (HDLs) like TL-verilog, Verilog and VHDL. It provides a user-friendly environment for creating and testing digital designs, making it especially useful for learning, teaching, and prototyping digital circuits and systems.
+This is how makerchip platform looks like(below is the example of pythagorean) 
+
+![image](https://github.com/Sushma-Ravindra/RISCV-Workshop/assets/141133883/da315b60-030c-4e01-8830-de05dd3f86e6)
+
+
+ 
+ ## RV-D3SK1 - L2 - Basic MUX Implementation and Introduction to Makerchip
+
+
+Go to makerchip.com and launch Makerchip IDE.
+Go to Learn, click on Examples and select FPGA multipler.
+
+![image](https://github.com/Sushma-Ravindra/RISCV-Workshop/assets/141133883/b8883b97-c251-415f-bd02-36c06db3c103)
+
+![image](https://github.com/Sushma-Ravindra/RISCV-Workshop/assets/141133883/566674c5-2f14-413b-ae9f-38b46c0b3a30)
+
+![image](https://github.com/Sushma-Ravindra/RISCV-Workshop/assets/141133883/c42727ab-3aa6-4494-be3d-5cd4e54877d4)
+
+![image](https://github.com/Sushma-Ravindra/RISCV-Workshop/assets/141133883/9371a1ca-ceac-4c49-9b85-f23c4d1e878d)
+
+![image](https://github.com/Sushma-Ravindra/RISCV-Workshop/assets/141133883/3e81da6d-aada-47e3-b435-40e22a4aa791)
+
+
+
+ 
  ## RV-D3SK1 - L3 - Labs for Combinational Logic
+
+Moving on to a combinational calculator on Makerchip ide using TLverilog
+ 
+```
+\TLV
+ $reset = *reset;
+
+ $val1[31:0] = $rand1[3:0];
+ $val2[31:0] = $rand2[3:0];
+
+ $sum[31:0] = $val1 + $val2;
+ $diff[31:0] = $val1 - $val2;
+ $prod[31:0] = $val1 * $val2;
+ $quot[31:0] = $val1 / $val2;
+
+$out[31:0] = $opt[1] ? ($opt[0] ? $quot : $prod) : ($opt[0] ? $diff : $sum);
+
+*passed = *cyc_cnt > 40;
+*failed = 1'b0;
+\SV
+  endmodule
+```
+
+
+![image](https://github.com/Sushma-Ravindra/RISCV-Workshop/assets/141133883/2c415356-49c4-4127-b27d-1946c4db531b)
+
+ 
 
  </details>
 
@@ -479,7 +540,45 @@ file:///home/lasya/Pictures/Screenshots/Screenshot%20from%202023-08-22%2018-34-4
   </summary>
 
 ## RV-D3SK2 - L1 - Introduction to Sequential Logic and Counter Lab
+Sequential Logic needs a clock for operation.
+
+![image](https://github.com/Sushma-Ravindra/RISCV-Workshop/assets/141133883/c75532a3-93ae-4b62-ad17-8baa644cc731)
+
+
+![image](https://github.com/Sushma-Ravindra/RISCV-Workshop/assets/141133883/a142c906-62e9-499c-9ebb-6a6eb9b553cc)
+
+
+![image](https://github.com/Sushma-Ravindra/RISCV-Workshop/assets/141133883/3829f951-67d3-4a81-91a7-e2d5376f9100)
+
+
 ## RV-D3SK2 - L2 - Sequential Calculator Lab
+
+
+![image](https://github.com/Sushma-Ravindra/RISCV-Workshop/assets/141133883/6fe8f1f3-97fb-4474-84fa-ea63db977668)
+
+```
+ $reset = *reset;
+
+ $val2[31:0] = $rand2[3:0];
+ $val1[31:0] = >>1$out[31:0];
+
+ $sum[31:0] = $val1 +  $val2;
+ $diff[31:0] = $val1 - $val2;
+ $prod[31:0] = $val1 * $val2;
+ $quot[31:0] = $val1 / $val2;
+
+ $out[31:0] = $reset ? 0 : ($opt[1] ? ($opt[0] ? $quot : $prod) : ($opt[0] ? $diff : $sum));
+
+*passed = *cyc_cnt > 40;
+*failed = 1'b0;
+\SV
+endmodule
+
+```
+![image](https://github.com/Sushma-Ravindra/RISCV-Workshop/assets/141133883/4e3087a8-67a5-4f88-ad1a-6e70d6dba14f)
+
+
+
 
 
 </details>
@@ -491,9 +590,71 @@ file:///home/lasya/Pictures/Screenshots/Screenshot%20from%202023-08-22%2018-34-4
   </summary>
 
 ## RV-D3SK3 - L1 - Pipelined Logic and Retiming
+
+Pipelining or timing abstract is an important feature in TL verilog as it can be implemented very easily with fewer codes as compared to system verilog which reduces bugs to a great extent. An example of the pipeling for pythogoras theorem using both TL verilog and system verilog in this repo . In TL verilog pipeling can be implemented by defining the pipeline as |calc and the different pipeline stages should be properly align and are indicated by @1, @2 and so on.
+Pipeline - Timing abstract Pipeline timing abstraction in Transaction-Level (TL) Verilog involves modeling the behavior of a pipelined digital system at a higher level of abstraction. Pipelining is a technique used to improve the throughput of digital systems by breaking down a complex operation into multiple stages, allowing multiple operations to be in progress simultaneously. Pipeline timing helps to operate at higher frequency.
+
+
+
+
+
 ## RV-D3SK3 - L2 - Pipeline Logic Advantages and Demo on Platform
+
+Pipeline is implemented using Pythogorean theorem in hardware
+
+![image](https://github.com/Sushma-Ravindra/RISCV-Workshop/assets/141133883/c01af7cd-2432-4d8b-b584-d17b92a3adb5)
+
+
+
+Implement the Fibonacci Series in a pipeline:
+
+![image](https://github.com/Sushma-Ravindra/RISCV-Workshop/assets/141133883/9340d0da-e48b-4679-8a91-987501a2b5d8)
+
+
+
+
 ## RV-D3SK3 - L3 - Lab on Error Condtions within Computation Pipeline
+
+```
+\TLV
+$reset = *reset;
+
+|comp
+  @1
+     $err1 = $bad_input || $illegeal_op;
+  @3
+     $err2 = $err1 || $over_flow;
+  @6
+     $err3 = $err2 || $div_by_zer0;
+
+*passed = *cyc_cnt > 40;
+ *failed = 1'b0;
+\SV
+ endmodule
+```
+
+![image](https://github.com/Sushma-Ravindra/RISCV-Workshop/assets/141133883/cebbc18d-a069-4cc3-9808-aab0fbcdb491)
+
+
 ## RV-D3SK3 - L4 - Lab on 2 Cycle Calculator
+
+
+Counter 
+
+![image](https://github.com/Sushma-Ravindra/RISCV-Workshop/assets/141133883/0f2a982a-7503-4de9-a6c3-d2711dcc8693)
+
+![image](https://github.com/Sushma-Ravindra/RISCV-Workshop/assets/141133883/c5da1eca-37e8-4218-8792-ecaa8fb30f9d)
+
+
+Cycle Calculator
+
+
+![image](https://github.com/Sushma-Ravindra/RISCV-Workshop/assets/141133883/a012dd5f-92a3-4376-9f85-02b25c102474)
+
+![image](https://github.com/Sushma-Ravindra/RISCV-Workshop/assets/141133883/d1e973ce-e928-4764-b3c0-5a298c9ba388)
+
+
+
 
 </details>
 
@@ -503,12 +664,11 @@ file:///home/lasya/Pictures/Screenshots/Screenshot%20from%202023-08-22%2018-34-4
     RV-D3SK4 - Validity 
   </summary>
 
-  
- ## RV-D3SK4 - L1 - Introduction to VALIDITY and its Advantages
- ## RV-D3SK4 - L2 - Lab on validity and valid when condition
- ## RV-D3SK4 - L3 - Lab to complete total distance
- ## RV-D3SK4 - L4 - Lab on 2 cycle calculator with validity 
- ## RV-D3SK4 - L5 - Calculator single Value Memory Lab
+In Transaction-Level Verilog (TL-Verilog), which is an extension of the Verilog hardware description language (HDL), "validity" refers to the concept of indicating whether a piece of data is valid or not. TL-Verilog is designed to facilitate high-level modeling and rapid design entry, particularly for transaction-level modeling.
+
+
+
+
 
  </details>
 

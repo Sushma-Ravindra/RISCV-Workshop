@@ -152,6 +152,41 @@ For signed representation, the MSB bit indicated the sign of the number. If MSB=
 
     
 
+</details>
+
+<details>
+ <summary>
+    RV-D1SK3 - Integer Number Representation
+ </summary>
+
+
+## RV-D1SK3 - L1 - 64 bit Number System for Unsigned Numbers
+
+Some data representation terms we use:
+Byte - A byte is a fundamental unit of digital information that consists of a group of eight bits.
+Word - A word is a basic unit of data that a processor can operate on in a single instruction. It typically corresponds to the natural data width of the processor's architecture. In RISC-V Word is of length 32bits.
+Double Word - In computer architecture and data representation, a "double word" is a term used to describe a unit of data that is twice the size of a "word." In RISC-V Double word is of length 64bits.
+Most Significant bit(MSB) - MSB stands for "Most Significant Bit." It is a term used in digital systems and binary representation to refer to the bit in a binary number that holds the highest positional value.
+Least Significant bit(LSB) - LSB stands for "Least Significant Bit." It is the term used in binary representation to refer to the bit in a binary number that holds the lowest positional value. In other words, the Least Significant Bit is the rightmost bit in a binary representation.
+
+
+## RV-D1SK3 - L2 - 64 bit Number System for Signed Numbers
+ 
+
+    In signed representation of binary numbers, the range of positive numbers we can represent using n-bits is: 0 to (2^(n-1) - 1) and the range of negative numbers is: -1 to -2^(n-1).
+2's complement The two's complement is a mathematical technique used in computing to represent signed integers (positive and negative whole numbers) using the binary number system.
+
+To convert a negative integer to its two's complement representation:
+
+    Take the positive binary representation.
+    Flip all the bits (change 0s to 1s and 1s to 0s).
+    Add 1 to the resulting value.
+    Positive number MSB=0 Negative number MSB=1
+
+
+## RV-D1SK3 - L3 - Lab for Signed and Unsigned Numbers
+
+
     Let us do a lab exercise based on the signed and unsigned binary numbers:
 
     The following code is to rpresent the highest binary number in unsigned representation:
@@ -166,22 +201,49 @@ For signed representation, the MSB bit indicated the sign of the number. If MSB=
   }
 ```
 
+Output:
+![Screenshot from 2023-08-22 23-02-11](https://github.com/Sushma-Ravindra/RISCV-Workshop/assets/141133883/a875620f-c22a-4947-9f74-f38b2c54e032)
+
+
+Modifying the above program to check whether the result we got is the highest number are not:
+
+```
+#include<stdio.h>
+#include<math.h>
+
+int main() {
+	long long int max = (long long int) (pow(2,10) * -1);
+	printf("highest number represented by long long int is %lld\n", max);
+	return 0;
+}
+
+```
+Output:
+
+
+![Screenshot from 2023-08-22 23-04-56](https://github.com/Sushma-Ravindra/RISCV-Workshop/assets/141133883/829b1020-93b5-45a7-8309-076e18433716)
+
+
+Now, Create a new file signedHighest.c with the following code in it:
+```
+#include<stdio.h>
+#include<math.h>
+
+int main() {
+	long long int max = (long long int) (pow(2,63) -1);
+	long long int min = (long long int) (pow(2,63) * -1);
+	printf("highest number represented by long long int is %lld\n", max);
+  printf("lowest number represented by long long int is %lld\n", min);
+	return 0;
+}
+```
+Output:
+![Screenshot from 2023-08-22 23-10-28](https://github.com/Sushma-Ravindra/RISCV-Workshop/assets/141133883/48fa4e34-4840-44d4-8899-ad50a1db54a0)
 
 
 
-</details>
-
-<details>
- <summary>
-    RV-D1SK3 - Integer Number Representation
- </summary>
 
 
-## RV-D1SK3 - L1 - 64 bit Number System for Unsigned Numbers
-
-## RV-D1SK3 - L2 - 64 bit Number System for Signed Numbers
-
-## RV-D1SK3 - L3 - Lab for Signed and Unsigned Numbers
 
 
 </details>

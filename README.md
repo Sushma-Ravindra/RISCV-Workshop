@@ -1,4 +1,4 @@
-![image](https://github.com/Sushma-Ravindra/RISCV-Workshop/assets/141133883/6e00d042-05e0-4464-ac2d-5ac51bea3e46)# RISCV-Workshop
+
 # Table of Contents
   - [DAY-1 - Introduction to RISC V ISA and GNU compiler toolchain](#day-1---introduction-to-risc-v-isa-and-gnu-compiler-toolchain)
   - [DAY-2 - Introduction to ABI and Basic Verification Flow](#day-2---introduction-to-abi-and-basic-verification-flow)

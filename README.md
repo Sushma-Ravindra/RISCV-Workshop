@@ -265,6 +265,65 @@ Output:
 
 ## RV-D2SK1 - L1 - Introducation to Application Binary Interface
 
+Application Binary Interface - In the context of RISC-V, the ABI specifies how system calls are invoked and how data is passed between user-mode applications and the operating system. Specifically, the ABI defines which registers are used for passing parameters to system calls and for receiving return values. It also specifies how the system call number (which corresponds to the specific service being requested) is passed to the operating system.
+Register Width in RISC-V - The width of registers in the RISC-V architecture is determined by the value of XLEN, which represents the native word size of the processor. XLEN is defined at the time the RISC-V architecture is implemented and can be different for different variations of the architecture.
+![image](https://github.com/Sushma-Ravindra/RISCV-Workshop/assets/141133883/92a0b9f5-73db-43a9-8362-7e9025139f04)
+
+
+For RV64 (RISC-V 64-bit architecture), XLEN is 64 bits. This means that general-purpose registers and other data paths in the processor are 64 bits wide.
+For RV32 (RISC-V 32-bit architecture), XLEN is 32 bits. In this case, general-purpose registers and data paths are 32 bits wide.
+
+Registers - In RISC-V there are 32 registers(x1-x31). We can load the registers in two different ways.
+
+Load directly into the registers.
+Load into the memory and then to register.(Each memory cell hold 1byte for 64bits data to load into memory we need 8 such memory cells)
+
+Little-endian memory addressing system - RISC-V belongs to the little endian memory addressing system.In a little-endian system, the least significant byte (LSB) of a multi-byte value is stored at the lowest memory address, while the most significant byte (MSB) is stored at the highest memory address.
+
+Application Binary Interface:
+
+It is a mode through which the application programmer can access the contents of hardware resources of the processor. The access of porcessor is done via registers.
+In RISC-V specification, we have 32 registers whose width is defined by the keyword "XLEN". It is XLEN-32 bit for Rv32 and XLEN-64 for Rv64.
+For RV64, the data can either be loaded to registers directly or we can first load tha data into memory which holds 8-bits in each memory address and then transfer it to the registers.
+All the instructions in RISC-V is of 32-bits.
+    1.ld(load doubleword) is a command to load the contents of memory into register.
+    2.add is used to add the contents of the registers/memory.
+    3.sd(store doubleword) is used to store the contents of register back to the memory.
+
+
+![image](https://github.com/Sushma-Ravindra/RISCV-Workshop/assets/141133883/666a240a-18dd-4457-bc99-43d439deb36c)
+
+
+![image](https://github.com/Sushma-Ravindra/RISCV-Workshop/assets/141133883/16cdc2d5-aa66-4228-a7d7-e6e8238cfe9a)
+
+
+
+![image](https://github.com/Sushma-Ravindra/RISCV-Workshop/assets/141133883/65742ca0-082f-4b72-a1bd-cd8cc8eb4963)
+
+
+
+
+In the RISC-V instruction set architecture (ISA), instructions are categorized based on their formats and functionalities. The I-type, R-type, and S-type instructions are three common categories of instructions in RISC-V. These categories help describe the structure of the instruction and how they operate on data.
+
+    I-Type Instructions (Immediate): I-type instructions are used for operations that involve an immediate value (constant) and a register. The immediate value is encoded within the instruction itself. Common examples include ADDI (add immediate), LW (load word), and SW (store word). Syntax: OP rd, rs1, imm
+
+    R-Type Instructions (Register): R-type instructions are used for operations that involve registers. The operation is specified by the opcode, and both source registers and destination registers are used. Common examples include ADD (add), SUB (subtract), and AND (bitwise AND). Syntax: OP rd, rs1, rs2
+
+    S-Type Instructions (Store): S-type instructions are used for storing data from a register into memory. They involve two registers and an offset that determines the memory location. Common examples include SW (store word) and SH (store halfword). Syntax: OP rs2, imm(rs1) Registers As we can see in the above figure 5bits are needed to represent each register. So if we calculate total number of registers we can have it will be, 2^5=32. Different types of registers is shown below.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## RV-D2SK1 - L2 - Memory Allocation for Double Words
 
 ## RV-D2SK1 - L3 - Load, Add ,Store Instructions with examples

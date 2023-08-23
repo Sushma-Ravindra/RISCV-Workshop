@@ -1502,16 +1502,16 @@ Grateful to Mr Kunal Ghosh, Co-Founder, VLSI SYSTEM DESIGN for providing an exce
 ## References
 
 
-	- www.vsdiat.com
+www.vsdiat.com
 
-	- www.github/kunal123.com
+www.github/kunal123.com
 
- 	- www.google.com
+www.google.com
 
- 	- https://github.com/riscv-software-src/homebrew-riscv/tree/main
+https://github.com/riscv-software-src/homebrew-riscv/tree/main
 
-	- https://redwoodeda.com
+https://redwoodeda.com
 
-	- https://github.com/stevehoover
+https://github.com/stevehoover
 
-	- https://github.com/alwinshaju08/RISCV#Day-3--Introduction-to-TL-Verilog-and-Makerchip.
+https://github.com/alwinshaju08/RISCV#Day-3--Introduction-to-TL-Verilog-and-Makerchip.

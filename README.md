@@ -5,8 +5,6 @@
   - [DAY-3 - Digital Logic with TL - Verilog and Makerchip](#day-3---digital-logic-with-tl---verilog-and-makerchip)
   - [DAY-4 - Basic RISCV CPU Computer Microarchitecture](#day-4---basic-riscv-cpu-computer-microarchitecture)
   - [DAY-5 Complete Pipelined RISCV CPU Microarchitecture](#day-5-complete-pipelined-riscv-cpu-microarchitecture)
-
-
   - [Contributors](#contributors)
   - [Acknowledgements](#acknowledgements)
   - [References](#references) 
@@ -1466,6 +1464,8 @@ m4+cpu_viz(@4)    // For visualisation, argument should be at least equal to the
 endmodule
 
 ```
+
+
 ![image](https://github.com/Sushma-Ravindra/RISCV-Workshop/assets/141133883/dd350175-459b-42b4-bdb9-a9a7fb03add2)
 
 
